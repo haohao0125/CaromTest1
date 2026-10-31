@@ -23,11 +23,13 @@ public class CPUScript : MonoBehaviour
         
         Vector2 shotDirection = (Vector2)(Quaternion.Euler(0, 0, randomAngle) * baseDirection);
         strikerRb.AddForce(shotDirection * shotPower, ForceMode2D.Impulse);
-
-
-        print("AI Fired shot at angle: " + randomAngle + " with power: " + shotPower);
         
+        // set object's layer to collide
+        gameObject.layer = LayerMask.NameToLayer("Puck");
+
+        //print("AI Fired shot at angle: " + randomAngle + " with power: " + shotPower);
         FindFirstObjectByType<GameHandlerScript>()?.StartMovementCheck();
+
 
     }
 

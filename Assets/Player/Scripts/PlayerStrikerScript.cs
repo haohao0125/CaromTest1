@@ -1,21 +1,24 @@
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
-public class FlickPuck : MonoBehaviour
+public class PlayerStrikerScript : MonoBehaviour
 {
     private Rigidbody2D rb;
     private LineRenderer lineRenderer;
 
-    private bool canDrag;
+    public bool canDrag;
     private bool isDragging = false;
 
-    public UnityEvent onMouseReleased;
+
     private Vector2 mousePressPos;
 
     [Header("Flick Settings")]
     [SerializeField] private float powerMultiplier = 5f;
     [SerializeField] private float maxDragDistance = 3f;
+
+    private PlayerMoveTestPuck movePosPuck;
 
     void Start()
     {
@@ -29,14 +32,22 @@ public class FlickPuck : MonoBehaviour
 
     void Update()
     {
-        handlePlayer1();
-
         if (canDrag) {
             handleDragingPlay();
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision) {
+        if (collision.CompareTag("Puck")) {
+            canDrag = false;
+        }
+    }
 
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.CompareTag("Puck")) {
+            canDrag = true;
+        }
+    }
 
     private void handlePlayer1() {
         GameHandlerScript handler = FindFirstObjectByType<GameHandlerScript>();
@@ -79,11 +90,13 @@ public class FlickPuck : MonoBehaviour
         {
             Vector2 currentMousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
                 
-            // Draw line from puck position to current mouse drag position
             lineRenderer.SetPosition(0, transform.position);
             lineRenderer.SetPosition(1, currentMousePos);
 
-            // When you release the mouse button
+            movePosPuck = FindFirstObjectByType<PlayerMoveTestPuck>();
+            movePosPuck.canMove = false;
+
+
             if (Mouse.current.leftButton.wasReleasedThisFrame)
             {
                 isDragging = false;
@@ -102,10 +115,19 @@ public class FlickPuck : MonoBehaviour
 
                 // find the handler to review movement check of all pucks after release
                 FindFirstObjectByType<GameHandlerScript>()?.StartMovementCheck();
+                canDrag = false;
 
-                onMouseReleased.Invoke();
+                // switch from trigger to collider
+                Collider2D col = GetComponent<Collider2D>();
+                if (col != null) {
+                    col.isTrigger = false;
+                }
+
             }
         }
     }
+
+
+    
 
 }

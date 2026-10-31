@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 5621564818793151448}
   - component: {fileID: -6617765697063885768}
   - component: {fileID: 7595569289979017615}
+  - component: {fileID: 3290850332377104008}
   m_Layer: 10
   m_Name: CaromAICPU
-  m_TagString: Puck
+  m_TagString: Striker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -281,8 +282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda5f3c9b7882ca48b37d521929b991e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarromAI
-  minPower: 3
-  maxPower: 8
+  minPower: 4
+  maxPower: 10
 --- !u!114 &7595569289979017615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,3 +298,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PuckData
   puckType: 3
   scoreValue: 0
+--- !u!114 &3290850332377104008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752454031864866784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0730fcc94a9adc94881d844373630b37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCheckClass
+  puckSpriteRenderer: {fileID: 8910117440061932201}
+  player1: 0

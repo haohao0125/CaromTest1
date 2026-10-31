@@ -47,6 +47,7 @@ public class StrikerPuckSpawn : MonoBehaviour
     private GameObject spawnedStriker1;
     private GameObject spawnedStriker2;
 
+    private PlayerStrikerScript strikerScript;
     public void SpawnPlayer1Striker()
     {
         if (spawnedStriker1 != null) {
@@ -61,7 +62,12 @@ public class StrikerPuckSpawn : MonoBehaviour
             destroyThisGuy(spawnedStriker2);
         }
 
-        putPuckinList(spawnedStriker1);
+
+        strikerScript = FindFirstObjectByType<PlayerStrikerScript>();
+        
+        if (strikerScript != null) 
+        { strikerScript.canDrag = true; }
+        //putPuckinList(spawnedStriker1);
     }
 
 
@@ -82,21 +88,21 @@ public class StrikerPuckSpawn : MonoBehaviour
             FindFirstObjectByType<CPUScript>() ?.TriggerCPUTurn();
         }));
 
-        putPuckinList(spawnedStriker2);
+        //putPuckinList(spawnedStriker2);
     }
 
 
-    public void putPuckinList(GameObject strikerObj)
-    {
+    //public void putPuckinList(GameObject strikerObj)
+    //{
 
-        Rigidbody2D rb = StrikerPlayer1.GetComponent<Rigidbody2D>();
-        GameHandlerScript handler = FindFirstObjectByType<GameHandlerScript>();
-        if (handler != null && rb != null)
-        {
-            handler.RegisterNewPuck(rb); // GameHandlerScript
-        }
+    //    Rigidbody2D rb = StrikerPlayer1.GetComponent<Rigidbody2D>();
+    //    GameHandlerScript handler = FindFirstObjectByType<GameHandlerScript>();
+    //    if (handler != null && rb != null)
+    //    {
+    //        handler.RegisterNewPuck(rb); // GameHandlerScript
+    //    }
 
-    }
+    //}
 
 
 

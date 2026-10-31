@@ -15,9 +15,11 @@ GameObject:
   - component: {fileID: 5621564818793151448}
   - component: {fileID: 5455371960097632379}
   - component: {fileID: -2964010306354733216}
-  m_Layer: 10
+  - component: {fileID: -8431598876613705237}
+  - component: {fileID: -5503520115535023375}
+  m_Layer: 9
   m_Name: PlayerStrikker
-  m_TagString: Puck
+  m_TagString: Striker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,7 +128,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -281,21 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 958bb3147747beb4d97b5747b4327f25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStrikerScript
-  onMouseReleased:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameHandlerScript, Assembly-CSharp
-        m_MethodName: StartMovementCheck
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  canDrag: 0
   powerMultiplier: 5
   maxDragDistance: 3
 --- !u!114 &-2964010306354733216
@@ -312,3 +300,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PuckData
   puckType: 3
   scoreValue: 0
+--- !u!114 &-8431598876613705237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752454031864866784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3256aea0913623e4ba616c280189d7e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMoveTestPuck
+  moveSpeed: 3
+  addForce: 1
+  canMove: 0
+--- !u!114 &-5503520115535023375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752454031864866784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0730fcc94a9adc94881d844373630b37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCheckClass
+  puckSpriteRenderer: {fileID: 8910117440061932201}
+  player1: 1
